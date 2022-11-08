@@ -26,7 +26,5 @@ module.exports = (sequelize) => {
     Step_by_Stp: {
       type: DataTypes.STRING
     }
-  },{
-		timestamps: false
-	});
+  });
 };
