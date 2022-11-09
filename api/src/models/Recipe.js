@@ -15,15 +15,15 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true
     },
-    dish_summary: {
+    summary: {
       type: DataTypes.TEXT,
       allowNull: false
     },
-    health_score: {
+    healthscore: {
       type: DataTypes.FLOAT,
       defaultValue: 1
     },
-    Step_by_Stp: {
+    step: {
       type: DataTypes.STRING
     }
   });
