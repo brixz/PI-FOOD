@@ -1,4 +1,4 @@
-import axios from 'axios';
+const axios = require('axios');
 require('dotenv').config();
 const { API_KEY } = process.env;
 const { Recipe, TypesDiet } = require("./db.js");
@@ -59,10 +59,11 @@ const getAllData = async()=>{
 }
 
 const getDiets = async ()=>{
- const datdiet  = await getApi().map(el=>{
+ const datdiet  = await getApi();
+ const infoDiets = datdiet.map(el=>{
     return el.diets
- });
- return datdiet;
+ })
+ return infoDiets;
 }
 
 module.exports={

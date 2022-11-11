@@ -1,5 +1,9 @@
+const express = require('express');
+const findOrCreateGenres = require('../Controllers/controller-getDiets.js');
+
+const router = express.Router();
 
 
-const getDiet= async ()=>{
-    const diets =[];
-}
+router.get("/", findOrCreateGenres);
+
+module.exports = router;
