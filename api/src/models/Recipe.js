@@ -10,21 +10,30 @@ module.exports = (sequelize) => {
       allowNull: false,
       primaryKey: true
     },
-    name: {
+    title: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
+      allowNull: false
     },
     summary: {
       type: DataTypes.TEXT,
       allowNull: false
     },
     healthscore: {
-      type: DataTypes.FLOAT,
-      defaultValue: 1
+      type: DataTypes.INTEGER
     },
-    step: {
-      type: DataTypes.STRING
-    }
+    steps: {
+      type: DataTypes.ARRAY(DataTypes.TEXT)
+    },
+    image: {
+      type: DataTypes.TEXT,
+    },
+    dishTypes: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+    },
+    createdInDb: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    },
   });
 };
