@@ -1,13 +1,13 @@
 const {TypesDiet} = require('../db.js');
 const {getDiets} = require('../getData.js');
 
-const findOrCreateGenres = async (req, res) => {
+const findOrCreateDiets = async (req, res) => {
     const diets = await getDiets();
     diets.map(async (g) => {
-        await TypesDiet.findOrCreateGenres({ where: { diets: g.diets}});
+        await TypesDiet.findOrCreate({ where: { title: g.title}});
     });
-    const orderedDiets = diets.sort((a, b) => a.title.localeCompare(b.title))
-    res.json(orderedDiets);
+    //const orderedDiets = diets.sort((a, b) => a.title.localeCompare(b.title))
+    res.json(diets.concat("vegetarian"));
 }
 
-module.exports = findOrCreateGenres;
+module.exports = findOrCreateDiets;

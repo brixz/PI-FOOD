@@ -1,29 +1,31 @@
 const axios = require('axios');
 require('dotenv').config();
-const { API_KEY } = process.env;
+const { APY_KEY } = process.env;
 const { Recipe, TypesDiet } = require("./db.js");
 
-const getApi= async()=>{
-    let ApiData= []
+const getApi= async ()=>{
+    try{
     let recipe;
-    const ApiInfo = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
-    ApiData.push(ApiInfo.data.result);
-    recipe = ApiData;
+    const ApiInfo = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${APY_KEY}&addRecipeInformation=true&number=100`)
+    recipe = ApiInfo.data?.results.map(rec=>{
+      return {
+          title: rec.title,
+          id: rec.id,
+          summary: rec.summary,
+          healthscore: rec.healthScore,
+          diets: rec.diets,
+          image: rec.image,
+          steps: rec.analyzedInstructions[0]?.steps.map((e) => e.step),
+          dishTypes: rec.dishTypes
+      }
+  })
+    console.log(recipe)
     return(
-        recipe.map((rec)=>{
-            //const{id, name, summary,healthscore, image, step} = res;
-            return {
-                id:rec.id,
-                title: rec.title,
-                summary: rec.summary,
-                healthscore: rec.healthScore,
-                diets: rec.diets.map((e) => e.title),
-                image: rec.image,
-                steps: rec.analyzedInstructions[0]?.steps.map((e) => e.step),
-                dishTypes: e.dishTypes,
-            }
-        })
-    )
+        recipe
+    )}
+    catch(err){
+      console.log(err);
+    }
 }
 
 const getDB = async()=>{
@@ -63,8 +65,16 @@ const getDiets = async ()=>{
  const infoDiets = datdiet.map(el=>{
     return el.diets
  })
- return infoDiets;
-}
+ const all = infoDiets.flat();
+ for (const key in all) {
+  TypesDiet.findOrCreate({
+    where: { title: all[key] },
+  });
+  }
+  const end = await TypesDiet.findAll()
+  return end;
+ }
+
 
 module.exports={
     getApi,

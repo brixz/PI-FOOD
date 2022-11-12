@@ -1,9 +1,9 @@
 const express = require('express');
-const findOrCreateGenres = require('../Controllers/controller-getDiets.js');
+const findOrCreateDiets = require('../Controllers/controller-getDiets.js');
 
 const router = express.Router();
 
 
-router.get("/", findOrCreateGenres);
+router.get("/", findOrCreateDiets);
 
 module.exports = router;
