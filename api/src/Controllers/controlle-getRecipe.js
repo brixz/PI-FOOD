@@ -2,14 +2,21 @@ const {Recipe} = require('../db.js');
 const {getAllData}= require('../getData.js')
 
 const findAllRecipeName = async (req, res)=>{
-    const {name} = req.query.name;
+    try{
+    const {name} = req.query;
     let recipes = await getAllData();
+   
     if(name){
-       const recipeByName = recipes.filter(rec => rec.title.toLowerCase().includes(name.toLowerCase()))
-        return res.send(recipeByName);
-    }
+       let recipeByName = await recipes.filter(rec => rec.title.toLowerCase().includes(name.toLowerCase()))
+       recipeByName.length
+        ? res.status(201).json(recipeByName)
+        : res.status(401).send("receta no encontrada");
+    }else{
     const orderRecipes = recipes.sort((a, b) => a.title.localeCompare(b.title))
-    res.json(orderRecipes);
+    res.json(orderRecipes);}}
+    catch(err){
+        console.log(err);
+    }
 }
 
 module.exports={
