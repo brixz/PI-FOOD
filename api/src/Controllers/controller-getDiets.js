@@ -6,8 +6,14 @@ const findOrCreateDiets = async (req, res) => {
     diets.map(async (g) => {
         await TypesDiet.findOrCreate({ where: { title: g.title}});
     });
+    // for (const key in object) {
+    //     if (Object.hasOwnProperty.call(object, key)) {
+    //         const element = object[key];
+            
+    //     }
+    // }
     //const orderedDiets = diets.sort((a, b) => a.title.localeCompare(b.title))
-    res.json(diets.concat("vegetarian"));
+    res.json(diets.concat({ title : "vegetarian"}));
 }
 
 module.exports = findOrCreateDiets;

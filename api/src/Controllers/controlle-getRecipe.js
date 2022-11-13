@@ -18,7 +18,22 @@ const findAllRecipeName = async (req, res)=>{
         console.log(err);
     }
 }
+const findIdRecipe = async(req, res)=>{
+try {
+    const {id} = req.params;
+    if(id){
+    let recipes = await getAllData();
+    const recipeforId = recipes.filter(el => el.id === id);
+    return res.sen(recipeforId)}
+    else{
+      return  res.send("Receta no encontrada")
+    }
+} catch (error) {
+   res.send(error) 
+}
+}
 
 module.exports={
     findAllRecipeName,
+    findIdRecipe,
 }

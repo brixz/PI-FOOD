@@ -66,12 +66,14 @@ const getDiets = async ()=>{
     return el.diets
  })
  const all = infoDiets.flat();
+ console.log(all)
  for (const key in all) {
   TypesDiet.findOrCreate({
     where: { title: all[key] },
   });
   }
   const end = await TypesDiet.findAll()
+  //console.log(end)
   return end;
  }
 
