@@ -57,8 +57,16 @@ const getAllData = async()=>{
     return api.concat(db);    
 }
 
+const getId = async (id)=>{
+  const data = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${APY_KEY}`)
+  const info= data.data;
+  console.log(info)
+  return info;
+}
+
 module.exports={
     getApi,
     getDB,
     getAllData,
+    getId
 }

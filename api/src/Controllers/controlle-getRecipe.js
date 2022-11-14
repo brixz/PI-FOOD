@@ -1,5 +1,6 @@
 const {Recipe} = require('../db.js');
-const {getAllData}= require('../getData.js')
+const {getAllData, getId}= require('../getData.js');
+const { get } = require('../routes/Diets.js');
 
 const findAllRecipeName = async (req, res)=>{
     try{
@@ -23,9 +24,8 @@ const findIdRecipe = async(req, res)=>{
 try {
     const {id} = req.params;
     if(id){
-    let recipes = await getAllData();
-    const recipeforId = recipes.map(el=>{if(el.id === id){return el}} );
-    recipeforId?res.status(201).json(recipeforId)
+    let recipe = await getId(id);
+    recipe?res.status(201).json(recipe)
     : res.status(401).send("receta no encontrada");
     }else{
       return  res.send("Receta no encontrada")
