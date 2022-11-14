@@ -35,10 +35,10 @@ try {
 }
 }
 const createRecipe = async(req, res)=>{
-    const { title, summary, healthscore, steps, diets, image}= req.body;
+    const { title, summary, healthScore, steps, diets, image}= req.body;
     try{
-        if(!title|| !summary || !healthscore || !steps || !diets || !image){return res.status(404).send("Faltan parametros")}
-        const newRecipe = await Recipe.create({ title: title, summary: summary, healthscore: healthscore, steps: steps, image: image})
+        if(!title|| !summary || !healthScore || !steps || !diets || !image){return res.status(404).send("Faltan parametros")}
+        const newRecipe = await Recipe.create({ title: title, summary: summary, healthScore: healthScore, steps: steps, image: image})
         res.status(201).send(newRecipe);
     }
     catch(error){

@@ -12,7 +12,7 @@ const getApi = async ()=>{
           title: rec.title,
           id: rec.id,
           summary: rec.summary,
-          healthscore: rec.healthscore,
+          healthScore: rec.healthScore,
           diets: rec.diets,
           image: rec.image,
           steps: rec.analyzedInstructions[0]?.steps.map((e) => e.step),
@@ -43,7 +43,7 @@ const getDB = async()=>{
         summary: e.summary,
         steps: e.steps,
         spoonacularScore: e.spoonacularScore,
-        healthscore: e.healthscore,
+        healthScore: e.healthScore,
         diets: e.diets,
         image: e.image,
         createdInDb: e.createdInDb,
@@ -57,27 +57,8 @@ const getAllData = async()=>{
     return api.concat(db);    
 }
 
-const getDiets = async ()=>{
- const datdiet  = await getApi();
- const infoDiets = datdiet.map(el=>{
-    return el.diets
- })
- const all = infoDiets.flat();
-//  console.log(all)
- for (const key in all) {
-  TypesDiet.findOrCreate({
-    where: { title: all[key] },
-  });
-  }
-  const end = await TypesDiet.findAll()
-  console.log(end)
-  return end;
- }
-
-
 module.exports={
     getApi,
     getDB,
     getAllData,
-    getDiets
 }
