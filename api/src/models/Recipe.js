@@ -25,15 +25,15 @@ module.exports = (sequelize) => {
       type: DataTypes.ARRAY(DataTypes.TEXT)
     },
     image: {
-      type: DataTypes.TEXT,
+      type: DataTypes.TEXT
     },
     dishTypes: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.ARRAY(DataTypes.STRING)
     },
     createdInDb: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
-      defaultValue: true,
+      defaultValue: true
     },
   });
 };

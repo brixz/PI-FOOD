@@ -1,28 +1,25 @@
 const axios = require('axios');
 require('dotenv').config();
-const { APY_KEY2 } = process.env;
+const { APY_KEY } = process.env;
 const { Recipe, TypesDiet } = require("./db.js");
 
-const getApi= async ()=>{
+const getApi = async ()=>{
     try{
     let recipe;
-    const ApiInfo = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${APY_KEY2}&addRecipeInformation=true&number=100`)
+    const ApiInfo = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${APY_KEY}&addRecipeInformation=true&number=100`)
     recipe = ApiInfo.data?.results.map(rec=>{
       return {
           title: rec.title,
           id: rec.id,
           summary: rec.summary,
-          healthscore: rec.healthScore,
+          healthscore: rec.healthscore,
           diets: rec.diets,
           image: rec.image,
           steps: rec.analyzedInstructions[0]?.steps.map((e) => e.step),
           dishTypes: rec.dishTypes
-      }
-  })
-    console.log(recipe)
-    return(
-        recipe
-    )}
+      }})
+        return recipe;
+       }
     catch(err){
       console.log(err);
     }
@@ -46,8 +43,8 @@ const getDB = async()=>{
         summary: e.summary,
         steps: e.steps,
         spoonacularScore: e.spoonacularScore,
-        healthScore: e.healthScore,
-        diets: e.diets.map((e) => e.title),
+        healthscore: e.healthscore,
+        diets: e.diets,
         image: e.image,
         createdInDb: e.createdInDb,
       };
@@ -66,14 +63,14 @@ const getDiets = async ()=>{
     return el.diets
  })
  const all = infoDiets.flat();
- console.log(all)
+//  console.log(all)
  for (const key in all) {
   TypesDiet.findOrCreate({
     where: { title: all[key] },
   });
   }
   const end = await TypesDiet.findAll()
-  //console.log(end)
+  console.log(end)
   return end;
  }
 

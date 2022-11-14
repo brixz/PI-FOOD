@@ -1,5 +1,5 @@
 const express = require('express');
-const {findAllRecipeName, findIdRecipe} = require('../Controllers/controlle-getRecipe.js')
+const {findAllRecipeName, findIdRecipe, createRecipe} = require('../Controllers/controlle-getRecipe.js')
 
 const router = express.Router();
 
@@ -7,7 +7,7 @@ router.get("/", findAllRecipeName);
 
 router.get("/:id", findIdRecipe);
 
-// router.post("/", createVideogame);
+router.post("/", createRecipe);
 
 // router.delete("/:id", deleteVideogame);
 
