@@ -3,21 +3,24 @@ const {getAllData, getId}= require('../getData.js');
 const { get } = require('../routes/Diets.js');
 
 const findAllRecipeName = async (req, res)=>{
-    try{
     const {name} = req.query;
     const recipes = await getAllData();
-   
+   console.log(recipes)
     if(name){
-       const recipeByName = await recipes.filter(rec => rec.title.toLowerCase().includes(name.toLowerCase()))
+        const recipeByName = await recipes.filter(rec => rec.title.toLowerCase().includes(name.toLowerCase()))
     //    recipeByName?res.status(201).json(recipeByName.title)
-    //     : res.status(401).send("receta no encontrada");
-    return res.status(201).json(recipeByName);
-    }else{
-    const orderRecipes = recipes.sort((a, b) => a.title.localeCompare(b.title))
-    res.json(orderRecipes);}}
-    catch(err){
-        console.log(err);
+    //    :res.status(401).send("receta no encontrada");
+    // return res.status(201).json(recipeByName);
+    if(recipeByName.length > 0){
+        return res.status(201).json(recipeByName)
+     }else{
+        res.status(401).send("receta no encontrada");
+     }
     }
+    else{
+    const orderRecipes = recipes.sort((a, b) => a.title.localeCompare(b.title))
+    res.json(orderRecipes);}
+    
 }
 
 const findIdRecipe = async(req, res)=>{
