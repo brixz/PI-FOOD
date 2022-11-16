@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-export default function ({title, diets,image, id}){
+export default function CardRecipe(title, diets,image, id){
 return(
     <div>
         <div>
