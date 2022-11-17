@@ -17,7 +17,7 @@ export default function Home(){
         {
             recipes.map(el =>{
                 return(
-                 <CardRecipe title={el.title} diets={el.diets} image={el.image} id={el.id} /> 
+                 <CardRecipe title={el.title} diets={el.diets} image={el.image} id={el.id} key={el.id} /> 
                )
            })
         }   
