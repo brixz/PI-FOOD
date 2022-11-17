@@ -1,12 +1,15 @@
+import { ERROR } from './actions';
 import {GET_ALL_RECIPES, GET_RECIPE_BY_NAME, GET_RECIPE_BY_ID, GET_ALL_DIETS, CREATE_RECIPE } from './actionstypes';
+
 
 const InitialState = {
         allrecipes: [],
         recipe:[],
-        diets: []  
+        diets: [] ,
+        error:{}
 }
 
-const rootReducer =(state = InitialState,action)=>{
+const rootReducer =(state=InitialState, action)=>{
     switch (action.type) {
         case GET_ALL_RECIPES:    
         return { ...state, 
@@ -28,8 +31,10 @@ const rootReducer =(state = InitialState,action)=>{
         return { ...state, 
             recipe: action.payload
         }
+        case ERROR:
+            return{...state,
+            error: action.payload}
     default: return {...state}    
     }
 }
-
-export default  rootReducer;
+export default rootReducer;

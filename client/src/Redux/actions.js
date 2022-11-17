@@ -1,10 +1,17 @@
 import axios from 'axios';
 import {GET_ALL_RECIPES, GET_RECIPE_BY_NAME, GET_RECIPE_BY_ID, GET_ALL_DIETS, CREATE_RECIPE } from './actionstypes';
+export const ERROR ='ERROR';
 
 export const getAllRecipes =()=>{
     return async function (dispatch){
-        const recipes = await axios.get('http://localhost:3001/recipes');
-        return dispatch({type:GET_ALL_RECIPES, payload: recipes.data});
+        try {
+            const rec = await axios.get('http://localhost:3001/recipes');
+            const recipes = rec.data;
+            dispatch({type:GET_ALL_RECIPES, payload: recipes});
+        } catch (error) {
+            dispatch({type: ERROR, payload:error})
+        }
+       
     }
 } 
 
