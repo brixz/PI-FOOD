@@ -48,11 +48,12 @@ export const getAllDiets= ()=>{
     }
 }
 
-export const postCreateRecipe= (Recipe)=>{
+export const postCreateRecipe=(Recipe)=>{
     return async function(dispatch){
         try {
             const recipe = await axios.post(`http://localhost:3001/recipes`, Recipe)
-            return dispatch({type:CREATE_RECIPE, payload:recipe.data})
+            const resul = recipe.data;
+            return dispatch({type:CREATE_RECIPE, payload:resul})
         } catch (error) {
             return dispatch({type: CREATE_RECIPE, payload: error})            
         }

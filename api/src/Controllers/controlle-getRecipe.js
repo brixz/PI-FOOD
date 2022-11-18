@@ -41,11 +41,12 @@ const createRecipe = async(req, res)=>{
     const { title, summary, healthScore, steps, diets, image}= req.body;
     try{
         if(!title|| !summary || !healthScore || !steps || !diets || !image){return res.status(404).send("Faltan parametros")}
-        const newRecipe = await Recipe.create({ title: title, summary: summary, healthScore: healthScore, steps: steps, image: image})
+        const newRecipe = await Recipe.create({ title: title, summary: summary, healthScore: healthScore, steps:[steps], diets:[diets],image: image})
         res.status(201).send(newRecipe);
     }
     catch(error){
         res.status(404).send(error);
+        console.log(error)
     }
 }
 

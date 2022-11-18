@@ -24,11 +24,15 @@ module.exports = (sequelize) => {
     steps: {
       type: DataTypes.ARRAY(DataTypes.TEXT)
     },
+    diets:{
+      type: DataTypes.ARRAY(DataTypes.STRING)
+    },
     image: {
       type: DataTypes.TEXT
     },
     dishTypes: {
-      type: DataTypes.ARRAY(DataTypes.STRING)
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allownull: true
     },
     createdInDb: {
       type: DataTypes.BOOLEAN,

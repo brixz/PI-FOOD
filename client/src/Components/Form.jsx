@@ -9,8 +9,8 @@ export default function Form(){
 
 const[Input,setInput]= useState({
     title:"",
-    summary:[],
-    healthscore:0,
+    summary:"",
+    healthScore:0,
     steps:[],
     diets:[],
     image:"",
@@ -23,8 +23,8 @@ const[error,setError] = useState({});
             dispatch(postCreateRecipe(Input));
             setInput({
                 title:"",
-                summary:[],
-                healthscore:0,
+                summary:"",
+                healthScore:0,
                 steps:[],
                 diets:[],
                 image:"",  
@@ -50,7 +50,7 @@ const[error,setError] = useState({});
         const error = {};
         if(!input.title.length) error.title = "you must enter a title"
         if(!input.summary.length) error.summary = "you must enter an summary"
-        if(!input.healthscore.length)error.healthscore = "you must enter an health score"
+        if(!input.healthScore.length)error.healthScore = "you must enter an health score"
         if(!input.steps.length) error.steps = "you must enter the steps"
         if(!input.diets.length) error.diets  = "you must enter the types of diets"
         if(!input.image.length) error.image = "you must enter an image"
@@ -80,9 +80,9 @@ const[error,setError] = useState({});
                     <p>{error.summary && error.summary}</p>
                 </div>
                 <div className="conteiner">
-                    <label className="label" htmlFor="healthscore">Health Score:</label>
-                    <input type='number' name="healthscore" value={Input.healthscore} onChange={handleChange}/>
-                    <p>{error.healthscore && error.healthscore}</p>
+                    <label className="label" htmlFor="healthScore">Health Score:</label>
+                    <input type='number' name="healthScore" value={Input.healthScore} onChange={handleChange}/>
+                    <p>{error.healthScore && error.healthScore}</p>
                 </div>
                 <div className="conteiner">
                     <label className="label" htmlFor="image">Image:</label>
