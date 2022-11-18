@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { postCreateRecipe } from "../Redux/actions";
 
 export default function Form(){
+    const dispatch = useDispatch();
+    const mensaje = useSelector(state => state.recipe);
+    const errors = useSelector(state => state.error);
 
 const[Input,setInput]= useState({
     title:"",
@@ -15,7 +20,15 @@ const[error,setError] = useState({});
     const handleSumit =(event)=>{
         event.preventDefault()
         if(!Object.keys(error).length){
-            console.log(Input);
+            dispatch(postCreateRecipe(Input));
+            setInput({
+                title:"",
+                summary:[],
+                healthscore:0,
+                steps:[],
+                diets:[],
+                image:"",  
+            })
         }
         else{
             alert("You must complete the entire form")
@@ -52,6 +65,8 @@ const[error,setError] = useState({});
     }
     return(
         <div className="conteiner">
+            {console.log(mensaje)}
+            {console.log(errors)}
             <h3>Create a recipe</h3>
             <form onSubmit={handleSumit}>
                 <div className="conteiner">
