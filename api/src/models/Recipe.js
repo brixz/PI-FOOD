@@ -28,7 +28,8 @@ module.exports = (sequelize) => {
       type: DataTypes.ARRAY(DataTypes.STRING)
     },
     image: {
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
+      defaultValue:"https://th.bing.com/th/id/OIP.b7EmPUXO7gC2PmWZhY7CQAHaLF?pid=ImgDet&rs=1"
     },
     dishTypes: {
       type: DataTypes.ARRAY(DataTypes.STRING),

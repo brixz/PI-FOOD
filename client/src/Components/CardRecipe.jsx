@@ -1,15 +1,16 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import './cardrecipe.css';
 
 export default function CardRecipe({title, diets,image, id}){
 return(
-    <div>
-        <div>
+    <div className='conteiner'>
+        <div className='todo'>
              <img src={image} alt='img not fount' width='200px' height='200px' />
              <h1>{title}</h1>
              <p>TypesDiets:{diets}</p>
         </div>
-        <div>
+        <div className='mas'>
             <Link to={'/recipes/' + id}>
               <p>More details...</p>
             </Link>

@@ -1,0 +1,15 @@
+.forr{
+    align-items: center;
+}
+.forr h3{
+    background: rgba(250, 250, 250, 0.441);
+    padding: 20px;
+    color: rgb(0, 0, 0);
+    font-style: oblique;
+    font-family:cursive;
+}
+.forr div label{
+    font-style: oblique;
+    font-family:cursive;
+    color: black;
+}

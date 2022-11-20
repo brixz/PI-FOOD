@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { postCreateRecipe } from "../Redux/actions";
+import './form.css';
 
 export default function Form(){
     const dispatch = useDispatch();
@@ -64,7 +65,7 @@ const[error,setError] = useState({});
         
     }
     return(
-        <div className="conteiner">
+        <div className="forr">
             {console.log(mensaje)}
             {console.log(errors)}
             <h3>Create a recipe</h3>
