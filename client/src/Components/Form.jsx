@@ -5,7 +5,7 @@ import './form.css';
 
 export default function Form(){
     const dispatch = useDispatch();
-    const mensaje = useSelector(state => state.recipe);
+    const mensaje = useSelector(state => state.allrecipe);
     const errors = useSelector(state => state.error);
 
 const[Input,setInput]= useState({
@@ -96,8 +96,21 @@ const[error,setError] = useState({});
                     <p>{error.steps && error.steps}</p>
                 </div>
                 <div className="conteiner">
-                    <label className="label" htmlFor="diets">Diets:</label>
-                    <input type='text' name="diets" value={Input.diets} onChange={handleChange}/>
+                    <select type='text' value={Input.diets} name="diets" onChange={handleChange}>
+                        <option>Type of Diets</option>
+                        <option >dairy free</option>
+                        <option >gluten free</option>
+                        <option >primal</option>
+                        <option >vegan</option>
+                        <option >lacto ovo vegetarian</option>
+                        <option >whole 30</option>
+                        <option >pescatarian</option>
+                        <option >fodmap friendly</option>
+                        <option >ketogenic</option>
+                        <option >vegetarian</option>
+                    </select>
+                    {/* <label className="label" htmlFor="diets">Diets:</label>
+                    <input type='text' name="diets" value={Input.diets} onChange={handleChange}/> */}
                     <p>{error.diets && error.diets}</p>
                 </div>
 

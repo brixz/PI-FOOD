@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_ALL_RECIPES, GET_RECIPE_BY_NAME, GET_RECIPE_BY_ID, GET_ALL_DIETS, CREATE_RECIPE } from './actionstypes';
+import {GET_ALL_RECIPES, GET_RECIPE_BY_NAME, GET_RECIPE_BY_ID, GET_ALL_DIETS, CREATE_RECIPE, FILTER_BY_DIETS} from './actionstypes';
 export const ERROR ='ERROR';
 
 export const getAllRecipes =()=>{
@@ -58,4 +58,11 @@ export const postCreateRecipe=(Recipe)=>{
             return dispatch({type: CREATE_RECIPE, payload: error})            
         }
     }
+}
+export const filteByDiets=(payload)=>{
+    console.log(payload)
+    return(
+       { type:FILTER_BY_DIETS,
+        payload}
+    )
 }

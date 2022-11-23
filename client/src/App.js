@@ -5,6 +5,7 @@ import Landingpage from './Components/LandingPage';
 import Home from './Components/Home'
 import Form from './Components/Form';
 import NavBar from './Components/NavBar';
+import CardDetail from './Components/CardDetails';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
       <Switch>
         <Route exact path='/' component={Landingpage} /> 
         <Route exact path='/home' component={Home} />
-        <Route exact path='/createRecipe' component={Form} />
+        <Route exact path='/detail/:id' comonent={CardDetail}/>
+        <Route exact path='/createRecipe' component={Form} /> 
       </Switch>
     </div>
   );

@@ -11,7 +11,7 @@ return(
              <p>TypesDiets:{diets}</p>
         </div>
         <div className='mas'>
-            <Link to={'/recipes/' + id}>
+            <Link to={'/detail/'+id}>
               <p>More details...</p>
             </Link>
         </div>
