@@ -4,3 +4,5 @@ export const GET_RECIPE_BY_ID= "GET_RECPE_BY_ID";
 export const GET_ALL_DIETS= "GET_ALL_DIETS";
 export const CREATE_RECIPE= "CREATE_RECIPE";
 export const FILTER_BY_DIETS="FILTER_BY_DIETS";
+export const ORDER_BY_SCORE ="ORDER_BY_SCORE";
+export const ORDER_BY_NAME = 'ORDER_BY_NAME'

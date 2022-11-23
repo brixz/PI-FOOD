@@ -1,15 +1,16 @@
 import React,{useEffect, useState} from "react";
 import {useSelector, useDispatch} from 'react-redux';
-import { getAllRecipes, getAllDiets, filteByDiets } from "../Redux/actions";
+import { getAllRecipes, getAllDiets, filteByDiets, orderByScore, orderByName} from "../Redux/actions";
 import CardRecipe from "./CardRecipe.jsx";
 import './home.css';
 import Paginado from "./Paginado.jsx";
-import Filtrado from "./FiltradoyOrden";
+//import Filtrado from "./FiltradoyOrden";
 
 export default function Home(){
     const dispatch = useDispatch();
     const recipes = useSelector(state=> state.allrecipes);
     const diets = useSelector(state => state.diets);
+    const[valid, setValid] = useState(true)
 
     const [currentPage, setcurrentPage]= useState(1);
     const [recipeForPage] = useState(9);
@@ -28,18 +29,39 @@ export default function Home(){
      
     useEffect(() => {
       dispatch(getAllDiets());
-  }, [dispatch])
-  function handleFilterByDiets(e) {
-    dispatch(filteByDiets(e.target.value))
+    }, [dispatch])
+
+    function handleFilterByDiets(e) {
+      dispatch(filteByDiets(e.target.value))
+    };
+
+    function handleOrderByScore(e) {
+      dispatch(orderByScore(e.target.value))
+      valid ? setValid(false) : setValid(true)
+  };
+  function handleOrderByName(e) {
+    dispatch(orderByName(e.target.value))
+    valid ? setValid(false) : setValid(true)
 };
 
      if(recipes.length){
       return(
         <div>
           <Paginado recipeForPage={recipeForPage} recipes={recipes.length} paginado={paginado} />
-          <Filtrado/>
+          {/* <Filtrado/> */}
+          <select onChange={e => handleOrderByName(e)} defaultValue='default'>
+                    <option value="default" disabled >Alphabetical order</option>
+                    <option value="asc">A-Z</option>
+                    <option value="desc">Z-A</option>
+          </select>
+          <select onChange={e => handleOrderByScore(e)} defaultValue='default'>
+                    <option value="default" disabled >Order by score</option>
+                    <option value="desc">Higher</option>
+                    <option value="asc">Lower</option>
+          </select>
           <select onChange={e => handleFilterByDiets(e)} defaultValue='default'>
-                    <option value="default" disabled >Select by diet type</option>
+                    <option value="default" disabled>Select by diet type</option>
+                    <option value="default" >All</option>
                     {
                         diets && diets.map(d => (
                             <option value={d.title} key={d.id}>{d.title}</option>
