@@ -18,7 +18,8 @@ export const getAllRecipes =()=>{
 export const getRecipeByName= (name)=>{
     return async function(dispatch){
         try {
-            const recipe = await axios.get(`http://localhost:3001/recipes?name=${name}`)
+            const cortar = name.length -1;
+            const recipe = await axios.get(`http://localhost:3001/recipes?name=` + name.slice(0, cortar))
             return dispatch({type:GET_RECIPE_BY_NAME, payload:recipe.data})
         } catch (error) {
             return dispatch({type: GET_RECIPE_BY_NAME, payload: error})            
@@ -32,7 +33,7 @@ export const getRecipeById= (id)=>{
             const recipe = await axios.get(`http://localhost:3001/recipes/${id}`)
             return dispatch({type:GET_RECIPE_BY_ID, payload:recipe.data})
         } catch (error) {
-            return dispatch({type: GET_RECIPE_BY_ID, payload: error})            
+            return dispatch({type:GET_RECIPE_BY_ID, payload: error})            
         }
     }
 }

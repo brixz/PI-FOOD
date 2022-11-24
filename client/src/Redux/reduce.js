@@ -17,9 +17,10 @@ const rootReducer =(state=InitialState, action)=>{
             allrecipes: action.payload,
             recipesCopyState: action.payload
         } 
-        case GET_RECIPE_BY_NAME:    
+        case GET_RECIPE_BY_NAME: 
+        console.log(action.payload);   
         return { ...state, 
-            allrecipe: action.payload
+            allrecipes: action.payload
         }
         case GET_RECIPE_BY_ID:    
         return { ...state, 
@@ -39,7 +40,7 @@ const rootReducer =(state=InitialState, action)=>{
         case FILTER_BY_DIETS:
             const recipes = state.recipesCopyState
             const recipesWithDiet = action.payload === 'default' ? recipes
-            :recipes.filter((r) =>{
+            : recipes.filter((r) =>{
                     let names = r.diets.map((d) =>{return d})
                     if (names.includes(action.payload)) return r
                 })

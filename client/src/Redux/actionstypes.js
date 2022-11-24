@@ -1,6 +1,6 @@
 export const GET_ALL_RECIPES = "GET_ALL_RECIPES";
 export const GET_RECIPE_BY_NAME= "GET_RECIPE_BY_NAME";
-export const GET_RECIPE_BY_ID= "GET_RECPE_BY_ID";
+export const GET_RECIPE_BY_ID= "GET_RECIPE_BY_ID";
 export const GET_ALL_DIETS= "GET_ALL_DIETS";
 export const CREATE_RECIPE= "CREATE_RECIPE";
 export const FILTER_BY_DIETS="FILTER_BY_DIETS";

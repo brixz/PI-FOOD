@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { useDispatch } from "react-redux";
-import { getRecipeByName } from "../Redux/actions.js";
+import { getRecipeByName } from "../Redux/actions"; 
 
 
 export default function SearchBar(){
@@ -13,15 +13,15 @@ export default function SearchBar(){
     };
     function handleButton(e){
         e.preventDefault();
-        dispatch(getRecipeByName(name))        
+        dispatch(getRecipeByName(name))      
     };
 
     return (
         <div>
             <input  type="text" 
-            placeholder='Search by name...' 
-            onChange={(e) => handleChange(e)}/>
-            <button  type='submit' onClick={ (e) => handleButton(e)} >Search</button>
+            placeholder='Search by name or diet type:' 
+            onChange={(e) => handleChange(e)}></input>
+            <button type='submit' onClick={ (e) => handleButton(e)} >Search</button>
         </div>
     )
 }

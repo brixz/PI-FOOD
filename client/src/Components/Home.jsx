@@ -4,7 +4,7 @@ import { getAllRecipes, getAllDiets, filteByDiets, orderByScore, orderByName} fr
 import CardRecipe from "./CardRecipe.jsx";
 import './home.css';
 import Paginado from "./Paginado.jsx";
-//import Filtrado from "./FiltradoyOrden";
+import SearchBar from "./Search.jsx";
 
 export default function Home(){
     const dispatch = useDispatch();
@@ -47,8 +47,8 @@ export default function Home(){
      if(recipes.length){
       return(
         <div>
+          <SearchBar/>
           <Paginado recipeForPage={recipeForPage} recipes={recipes.length} paginado={paginado} />
-          {/* <Filtrado/> */}
           <select onChange={e => handleOrderByName(e)} defaultValue='default'>
                     <option value="default" disabled >Alphabetical order</option>
                     <option value="asc">A-Z</option>
