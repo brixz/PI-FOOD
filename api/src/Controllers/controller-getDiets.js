@@ -2,12 +2,12 @@ const axios = require('axios');
 const {TypesDiet} = require('../db.js');
 //const {getDiets} = require('../getData.js');
 require('dotenv').config();
-const { APY_KEY } = process.env;
+const { APY_KEY4 } = process.env;
 
 const findOrCreateDiets = async (req, res) => {
     try {
         const info = await axios.get(
-          `https://api.spoonacular.com/recipes/complexSearch?apiKey=${APY_KEY}&addRecipeInformation=true&number=100`
+          `https://api.spoonacular.com/recipes/complexSearch?apiKey=${APY_KEY4}&addRecipeInformation=true&number=100`
         );
         const types = info.data?.results.map((e) => e.diets);
         const newTypes = types.flat().concat("vegetarian", "ketogenic");

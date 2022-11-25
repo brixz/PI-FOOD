@@ -9,6 +9,6 @@ router.get("/:id", findIdRecipe);
 
 router.post("/", createRecipe);
 
-// router.delete("/:id", deleteVideogame);
+// router.delete("/:id", deletRecipe);
 
 module.exports= router;
