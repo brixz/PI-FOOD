@@ -33,14 +33,7 @@ const[error,setError] = useState({});
         }
         else{
             alert("You must complete the entire form")
-        }
-        // const recipes={
-        //     title:document.querySelector("input[name='title']").value,
-        //     summary:document.querySelector("input[name='summary']").value,
-        //     healthscore:document.querySelector("input[name='healthscore']").value,
-        //     image:document.querySelector("input[name='image']").value
-        // }
-       
+        }       
     }
 
     useEffect(()=>{

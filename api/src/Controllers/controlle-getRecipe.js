@@ -1,6 +1,6 @@
 const {Recipe} = require('../db.js');
 const {getAllData, getId}= require('../getData.js');
-const { get } = require('../routes/Diets.js');
+//const { get } = require('../routes/Diets.js');
 
 const findAllRecipeName = async (req, res)=>{
     const {name} = req.query;
