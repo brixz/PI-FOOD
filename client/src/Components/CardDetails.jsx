@@ -4,7 +4,9 @@ import { useParams } from "react-router";
 //import { Link } from "react-router-dom";
 import { getRecipeById } from "../Redux/actions";
 import s from './cardDetail.module.css'
-
+function back(){
+    window.history.back();
+}
 export default function CardDetail() {
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -14,10 +16,13 @@ export default function CardDetail() {
 
     const detailedRecipe = useSelector(state => state.detail)
     console.log(detailedRecipe)
+   
 
  if(detailedRecipe){
+   
     return(
         <div className="conteiner">
+            
             <h1>{detailedRecipe.title}</h1>
             <img src={detailedRecipe.image} alt='img not fount' width='200px' height='200px'/>
             <p className={s.pp}>Type of dish:{detailedRecipe.dishTypes}</p>
@@ -25,6 +30,9 @@ export default function CardDetail() {
             <p>Health Score:{detailedRecipe.healthScore}</p>
             <p className={s.summ}>Summary:{detailedRecipe.summary}</p>
             <p className={s.summ}>Steps:{detailedRecipe.instructions}</p>
+            <div>
+            <input type="buttonBack" value="Página anterior" onclick={back}></input>
+            </div>
         </div>
     )
  }else{
