@@ -4,9 +4,7 @@ import { useParams } from "react-router";
 //import { Link } from "react-router-dom";
 import { getRecipeById } from "../Redux/actions";
 import s from './cardDetail.module.css'
-function back(){
-    window.history.back();
-}
+
 export default function CardDetail() {
     const dispatch = useDispatch();
     const { id } = useParams();
@@ -19,6 +17,9 @@ export default function CardDetail() {
    
 
  if(detailedRecipe){
+    function back(){
+        window.history.back(-1);
+    }
    
     return(
         <div className="conteiner">
@@ -31,7 +32,7 @@ export default function CardDetail() {
             <p className={s.summ}>Summary:{detailedRecipe.summary}</p>
             <p className={s.summ}>Steps:{detailedRecipe.instructions}</p>
             <div>
-            <input type="buttonBack" value="Página anterior" onclick={back}></input>
+            <button type="buttonBack" value="Página anterior" onclick={back()}></button>
             </div>
         </div>
     )
